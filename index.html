@@ -60,6 +60,17 @@
           </select>
         </div>
 
+        <div class="form-group">
+          <label for="amount">Number of Questions</label>
+          <select id="amount" aria-label="Select number of questions">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+
         <button id="startBtn" aria-label="Start quiz">
           Start Quiz
           <span>></span>
@@ -68,7 +79,7 @@
 
       <!-- Screen-2 -->
 
-      <div id="quizScreen" class="card">
+      <div id="quizScreen" class="card hidden">
         <div class="progress-container">
           <div class="progress-header">
             <span class="progress-text" id="progressText">
@@ -92,11 +103,16 @@
             Next Question
             <span>></span>
           </button>
+
+          <button id="quitbtn" class="btn-secondary" aria-label="Quit quiz">
+            Quit quiz
+          </button>
         </div>
       </div>
 
+
       <!-- Screen-3 -->
-      <div id="resultsScreen" class="card">
+      <div id="resultsScreen" class="card hidden">
         <div class="results-header">
           <div class="trophy-icon">🏆</div>
           <h2 class="results-title">Quiz Complete</h2>

@@ -10,7 +10,13 @@ html {
 }
 
 body {
+  font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* background-image: url(img/background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; */
   min-height: 100vh;
   padding: 2rem;
   color: #333;
@@ -69,24 +75,26 @@ h1 {
 
 label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
 }
 
 select {
   width: 100%;
   padding: 1.4rem 1.6rem;
+  /* padding-right: 4rem; */
   border: 2px solid #e0e0e0;
   border-radius: 1.2rem;
   font-size: 1.4rem;
-  background: #fff;
+  /* background-color: #fff; */
   cursor: pointer;
   transition: all 0.3s ease;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1.6rem center;
+  /* background-size: 1.2rem; */
 }
 
 select:hover {
@@ -132,6 +140,23 @@ button:disabled {
   transform: none;
 }
 
+.btn-secondary {
+  background: transparent;
+  color: #764ba2;
+  border: 2px solid #764ba2;
+  margin-top: 1.5rem;
+}
+
+.btn-secondary:hover {
+  background: #f3f4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+}
+
+.btn-secondary:disabled {
+  background: transparent;
+}
+
 /************ 
 **Screen-2***
 *************/
@@ -153,13 +178,13 @@ button:disabled {
 }
 
 .progress-text {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 600;
   color: #666;
 }
 
 .score-text {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 600;
   color: #666;
 }
@@ -180,6 +205,60 @@ button:disabled {
   font-weight: 600;
   padding: 0.3rem 0.8rem;
   border-radius: 1.6rem;
+}
+
+.badge-category {
+  background: #e8eaf6;
+  color: #667eea;
+}
+
+.badge-difficulty {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.question-text {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 3rem;
+  line-height: 1.5;
+}
+
+.answer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.answer-option {
+  position: relative;
+}
+
+.answer-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.answer-label {
+  display: block;
+  background: #fff;
+  padding: 1.6rem 2rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 1.2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.answer-option input[type="radio"]:checked + .answer-label {
+  border-color: #667eea;
+  background: #f3f4ff;
+}
+
+.answer-label:hover {
+  border-color: #667eea;
+  background: #fafbff;
 }
 
 /************ 
@@ -302,3 +381,4 @@ button:disabled {
   background: #ffebee;
   color: #c62828;
 }
+
