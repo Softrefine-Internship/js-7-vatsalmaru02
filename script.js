@@ -6,10 +6,10 @@ const resultsScreen = document.getElementById("resultsScreen");
 const categorySelect = document.getElementById("category");
 const difficultySelect = document.getElementById("difficulty");
 const typeSelect = document.getElementById("type");
-const amount = document.getElementById("amount");
+const amountSelect = document.getElementById("amount");
 const startBtn = document.getElementById("startBtn");
 const nextBtn = document.getElementById("nextBtn");
-const quitBtn = document.getElementById("quitBtn");
+const quitBtn = document.getElementById("quitbtn");
 const restartBtn = document.getElementById("restartBtn");
 const errorDiv = document.getElementById("error");
 
@@ -79,9 +79,10 @@ startBtn.addEventListener("click", async () => {
   const category = categorySelect.value;
   const difficulty = difficultySelect.value;
   const type = typeSelect.value;
+  const amount = amountSelect.value;
 
   // Build API URL with proper encoding
-  let apiUrl = "https://opentdb.com/api.php?amount=10&encode=url3986";
+  let apiUrl = `https://opentdb.com/api.php?amount=${amount}&encode=url3986`;
   if (category) apiUrl += `&category=${category}`;
   if (difficulty) apiUrl += `&difficulty=${difficulty}`;
   if (type) apiUrl += `&type=${type}`;
@@ -231,4 +232,49 @@ nextBtn.addEventListener("click", () => {
   } else {
     showResults();
   }
+});
+
+quitBtn.addEventListener("click", () => {
+  showResults();
+});
+
+//Show result
+
+function showResults() {
+  document.getElementById("finalScore").textContent = score;
+
+  const resultsList = document.getElementById("resultsList");
+  resultsList.innerHTML = "";
+
+  userAnswers.forEach((answer, index) => {
+    const resultItem = document.createElement("div");
+    resultItem.className = `result-item ${
+      answer.isCorrect ? "correct" : "incorrect"
+    }`;
+
+    resultItem.innerHTML = `
+                    
+                    <div class="result-content">
+                        <div class="result-question">${decodeHTML(
+                          answer.question
+                        )}</div>
+                        ${
+                          !answer.isCorrect
+                            ? `<div class="result-answer">Correct: ${decodeHTML(
+                                answer.correctAnswer
+                              )}</div>`
+                            : ""
+                        }
+                    </div>
+                `;
+    resultsList.appendChild(resultItem);
+  });
+
+  quizScreen.classList.add("hidden");
+  resultsScreen.classList.remove("hidden");
+}
+
+restartBtn.addEventListener("click", () => {
+  resultsScreen.classList.add("hidden");
+  settingsScreen.classList.remove("hidden");
 });
