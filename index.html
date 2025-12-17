@@ -72,8 +72,24 @@
         </div>
 
         <button id="startBtn" aria-label="Start quiz">
-          Start Quiz
-          <span>></span>
+          <span class="btn-text">Start Quiz</span>
+          <div class="loader hidden"></div>
+          <span class="btn-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="arrow-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+              />
+            </svg>
+          </span>
         </button>
       </div>
 
@@ -101,7 +117,22 @@
 
           <button id="nextBtn" aria-label="Next question">
             Next Question
-            <span>></span>
+            <span
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="arrow-icon"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </span>
           </button>
 
           <button id="quitbtn" class="btn-secondary" aria-label="Quit quiz">
@@ -109,7 +140,6 @@
           </button>
         </div>
       </div>
-
 
       <!-- Screen-3 -->
       <div id="resultsScreen" class="card hidden">
@@ -130,21 +160,43 @@
         <div class="results-list" id="resultsList"></div>
 
         <button id="restartBtn" aria-label="Play again">
-          Play Again
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="restart-icon"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
-            />
-          </svg>
+          <span class="btn-text">Play Again</span>
+          <div class="loader hidden"></div>
+          <span class="btn-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="restart-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+    <!-- ... your other content ... -->
+    <div id="quitConfirmOverlay" class="modal-overlay hidden"></div>
+    <div id="quitConfirmModal" class="card modal hidden">
+      <div class="modal-content">
+        <h3 class="modal-title">Quit Quiz?</h3>
+        <p class="modal-text">
+          Are you sure you want to quit? Your current progress will be shown in
+          the results.
+        </p>
+      </div>
+      <div class="modal-actions">
+        <button id="cancelQuitBtn" class="btn-secondary diolouge-cancel">
+          Cancel
+        </button>
+        <button id="confirmQuitBtn" class="btn-secondary diolouge-confirm">
+          Quit
         </button>
       </div>
     </div>

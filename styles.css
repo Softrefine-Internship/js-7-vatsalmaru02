@@ -33,7 +33,7 @@ body {
 
 header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   animation: fadeIn 0.6s ease-in;
 }
 
@@ -53,7 +53,7 @@ h1 {
   background: #fff;
   border-radius: 2rem;
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
-  padding: 4rem;
+  padding: 3.8rem;
   animation: slideUp 0.6s ease-out;
 }
 
@@ -159,6 +159,12 @@ button:disabled {
   background: transparent;
 }
 
+.arrow-icon {
+  height: 1.8rem;
+  width: 1.8rem;
+  margin-top: 0.5rem;
+}
+
 /************ 
 **Screen-2***
 *************/
@@ -254,8 +260,27 @@ button:disabled {
 }
 
 .answer-option input[type="radio"]:checked + .answer-label {
-  border-color: #667eea;
-  background: #f3f4ff;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.answer-option.correct .answer-label {
+  background: #4caf50 !important;
+  color: #ffffff !important;
+  border-color: #4caf50 !important;
+}
+
+.answer-option.incorrect .answer-label {
+  background: #f44336 !important;
+  color: #ffffff !important;
+  border-color: #f44336 !important;
+}
+
+.answer-option.disabled .answer-label:hover {
+  background: inherit;
+  border-color: inherit;
+  cursor: default;
 }
 
 .answer-label:hover {
@@ -277,7 +302,7 @@ button:disabled {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #fff;
   margin: -4rem -4rem 2rem -4rem;
-  padding: 5rem 4rem;
+  padding: 2.5rem 4rem;
   border-radius: 2rem 2rem 0 0;
   overflow: hidden;
 }
@@ -295,13 +320,15 @@ button:disabled {
 }
 
 .results-title {
+  text-align: center;
   font-size: 3.2rem;
   margin-bottom: 0.6rem;
 }
 
 .results-subtitle {
+  text-align: center;
   font-size: 1.4rem;
-  opacity: 0.9;
+  font-weight: 600;
 }
 
 .restart-icon {
@@ -333,7 +360,7 @@ button:disabled {
 }
 
 .results-list {
-  max-height: 400px;
+  max-height: 140px;
   overflow-y: auto;
   margin-bottom: 1.8rem;
   padding-right: 0.6rem;
@@ -343,19 +370,20 @@ button:disabled {
   display: flex;
   align-items: flex-start;
   gap: 0.8rem;
-  padding: 1rem;
   border-radius: 0.8rem;
   margin-bottom: 0.8rem;
   text-align: left;
 }
 
 .result-item.correct {
+  padding: 1rem;
   background: #4caf50;
   border: 2px solid #4caf50;
   color: #ffebee;
 }
 
 .result-item.incorrect {
+  padding: 1rem;
   background: #f44336;
   border: 2px solid #f44336;
   color: #ffebee;
@@ -379,6 +407,7 @@ button:disabled {
 
 .result-answer {
   font-size: 1.4rem;
+  font-weight: 600;
   /* color: #666; */
 }
 
@@ -387,30 +416,53 @@ button:disabled {
   color: #c62828;
 }
 
+.diolouge-cancel {
+  background: #4caf50;
+  color: #fff;
+  border: none;
+}
+
+.diolouge-cancel:hover {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+}
+
+.diolouge-confirm {
+  background: #f44336;
+  color: #fff;
+  border: none;
+}
+
+.diolouge-confirm:hover {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+}
+
+.loader {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid #fff;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .loading {
   text-align: center;
   padding: 4rem;
   color: #667eea;
   font-size: 1.8rem;
-}
-
-.loading::after {
-  content: "...";
-  animation: dots 1.5s steps(4, end) infinite;
-}
-
-@keyframes dots {
-  0%,
-  20% {
-    content: ".";
-  }
-  40% {
-    content: "..";
-  }
-  60%,
-  100% {
-    content: "...";
-  }
 }
 
 @keyframes fadeIn {
@@ -431,6 +483,55 @@ button:disabled {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/************
+** Modal ***
+*************/
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  width: 90%;
+  max-width: 450px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.modal-content {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.modal-text {
+  font-size: 1.6rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
 /* Media Queries */
