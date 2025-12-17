@@ -277,10 +277,13 @@ button:disabled {
   border-color: #f44336 !important;
 }
 
-.answer-option.disabled .answer-label:hover {
-  background: inherit;
-  border-color: inherit;
-  cursor: default;
+.answer-option.disabled .answer-label,
+.answer-option.disabled:not(.correct):not(.incorrect) .answer-label:hover {
+  cursor: not-allowed;
+}
+
+.answer-option.disabled:not(.correct):not(.incorrect) .answer-label {
+  opacity: 0.5;
 }
 
 .answer-label:hover {
@@ -532,6 +535,20 @@ button:disabled {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+}
+
+.modal .card {
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2.4rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 /* Media Queries */

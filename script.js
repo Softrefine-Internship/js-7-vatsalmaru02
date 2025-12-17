@@ -16,6 +16,9 @@ const quitConfirmModal = document.getElementById("quitConfirmModal");
 const quitConfirmOverlay = document.getElementById("quitConfirmOverlay");
 const confirmQuitBtn = document.getElementById("confirmQuitBtn");
 const cancelQuitBtn = document.getElementById("cancelQuitBtn");
+const modalOverlay = document.querySelector(".modal-overlay");
+const closeButton = document.querySelector(".modal-close");
+const cancelButton = document.querySelector(".diolouge-cancel");
 
 let questions = [];
 let currentQuestionIndex = 0;
@@ -91,8 +94,6 @@ async function loadCategories() {
     showError("Failed to load categories. Please refresh the page.");
   }
 }
-
-loadCategories();
 
 function decodeHTML(html) {
   const txt = document.createElement("textarea");
@@ -183,9 +184,6 @@ startBtn.addEventListener("click", async () => {
 function displayQuestion() {
   let answerSelected = false;
   const question = questions[currentQuestionIndex];
-  const categoryName =
-    categories.find((c) => c.id == categorySelect.value)?.name ||
-    question.category;
 
   document.getElementById("progressText").textContent = `Question ${
     currentQuestionIndex + 1
@@ -256,7 +254,7 @@ function displayQuestion() {
         const radio = opt.querySelector("input");
 
         if (radio.dataset.correct === "true") {
-          opt.classList.add("correct"); // always show correct
+          opt.classList.add("correct");
         }
       });
 
@@ -309,6 +307,19 @@ quitBtn.addEventListener("click", () => {
   quitConfirmOverlay.classList.remove("hidden");
 });
 
+closeButton.addEventListener("click", () => {
+  hideQuitConfirmation();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "Escape" &&
+    !quitConfirmModal.classList.contains("hidden")
+  ) {
+    hideQuitConfirmation();
+  }
+});
+
 function hideQuitConfirmation() {
   quitConfirmModal.classList.add("hidden");
   quitConfirmOverlay.classList.add("hidden");
@@ -316,6 +327,10 @@ function hideQuitConfirmation() {
 
 confirmQuitBtn.addEventListener("click", () => {
   showResults();
+  hideQuitConfirmation();
+});
+
+quitConfirmOverlay.addEventListener("click", () => {
   hideQuitConfirmation();
 });
 
@@ -368,3 +383,5 @@ restartBtn.addEventListener("click", () => {
     setButtonLoading(restartBtn, false);
   }, 3500);
 });
+
+loadCategories();
